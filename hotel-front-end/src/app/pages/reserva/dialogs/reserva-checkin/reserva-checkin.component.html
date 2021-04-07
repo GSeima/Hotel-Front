@@ -1,0 +1,22 @@
+<h1 class="title">Check-In</h1>
+<form [formGroup]="hospedes">
+    <div mat-dialog-content class="checkIn">
+        <mat-form-field class="cpf" formArrayName="cpfs" *ngFor="let cpf of hospedes.get('cpfs')['controls']; let i = index;">
+            <mat-label>CPF</mat-label>
+            <div [formGroupName]="i">
+                <input type="text" matInput placeholder="Ex. 12345678901" formControlName="cpf">
+            </div>
+        </mat-form-field>
+    </div>
+
+    <button type="button" class="btn btn-success" [disabled]="cpfs.length >= 2" (click)="adicionarCpf()">+</button>
+</form>
+
+<div mat-dialog-actions class="actions-button">
+    <button class="cancelar-button" mat-button (click)="cancelar()">
+        Cancelar
+    </button>
+    <button class="checkIn-button" [disabled]="!hospedes.valid" mat-raised-button (click)="checkIn()">
+        Cadastrar
+    </button>
+</div>

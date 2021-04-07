@@ -1,0 +1,12 @@
+<button class="user-button" mat-mini-fab [matMenuTriggerFor]="userMenu">
+  <mat-icon class="user-button__icon">person</mat-icon>
+</button>
+<mat-menu #userMenu="matMenu" xPosition="before">
+  <div class="user-menu-title">
+    <h4 class="user-menu-title__name">{{user.name}}</h4>
+    <a class="user-menu-title__link" [href]="bonsoirEmail">admin@bonsoir.com</a>
+  </div>
+  <div class="sign-button-wrapper">
+    <button class="sign-button" mat-flat-button (click)="signOutEmit()">Sign out</button>
+  </div>
+</mat-menu>

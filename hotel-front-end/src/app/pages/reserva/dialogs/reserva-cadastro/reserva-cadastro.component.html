@@ -1,0 +1,23 @@
+<h1 class="title">Cadastro Reserva</h1>
+<form [formGroup]="reserva">
+    <div mat-dialog-content class="cadastro">
+        <mat-form-field class="cpf">
+            <mat-label>CPF</mat-label>
+            <input type="text" matInput placeholder="Ex. 12345678900" formControlName="cpf">
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Numero do Quarto</mat-label>
+            <input type="number" matInput placeholder="Ex. 1" formControlName="quartoId">
+        </mat-form-field>
+    </div>
+</form>
+
+<div mat-dialog-actions class="actions-button">
+    <button class="cancelar-button" mat-button (click)="cancelar()">
+        Cancelar
+    </button>
+    <button class="cadastrar-button" [disabled]="!reserva.valid" mat-raised-button (click)="cadastrar()">
+        Cadastrar
+    </button>
+</div>

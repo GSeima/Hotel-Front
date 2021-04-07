@@ -1,0 +1,30 @@
+import { NgModule } from "@angular/core";
+import { SharedModule } from "src/app/shared/shared.module";
+
+import { QuartoPageComponent } from "./components/quarto-page/quarto-page.component";
+import { QuartoService } from "./services/quarto.service";
+import { RouterModule, Routes } from "@angular/router";
+import { AuthGuard } from "../auth/guards";
+
+const routes: Routes = [
+    {
+        path: '',
+        pathMatch: 'full',
+        canActivate: [AuthGuard],
+        component: QuartoPageComponent
+    }
+];
+
+@NgModule({
+    declarations: [
+        QuartoPageComponent
+    ],
+    imports: [
+        SharedModule,
+        RouterModule.forChild(routes)
+    ],
+    providers: [
+        QuartoService
+    ]
+})
+export class QuartoModule { }

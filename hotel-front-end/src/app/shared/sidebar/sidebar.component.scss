@@ -1,0 +1,62 @@
+@import "src/app/styles/colors";
+@import "src/app/styles/font";
+@import "src/app/styles/variables";
+
+.mat-list-base {
+  border-bottom: 1px;
+  width: $sidebar-width;
+  padding-bottom: 16px;
+
+  & .mat-list-item {
+    display: flex;
+    cursor: pointer;
+    color: black;
+    width: auto;
+    padding-left: 4px;
+
+    &.active {
+      color: white;
+      background-color: darkgray;
+      outline: none;
+
+      & .mat-icon {
+        color: white;
+      }
+
+      & .circle {
+        background-color: $sidebar-icon-color-active;
+      }
+    }
+
+    &:hover {
+      background-color: darkgrey;
+    }
+
+    &:focus {
+      outline: none;
+    }
+  }
+}
+
+.mat-icon {
+  margin-right: 15px;
+  color: black;
+}
+
+
+.sidebar-title {
+  color: $sidebar-title-color;
+  font-size: $fs-normal;
+  text-transform: uppercase;
+  margin-top: 32px;
+  margin-left: 24px;
+  margin-bottom: 16px;
+}
+
+.circle {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background-color: $sidebar-circle-color;
+  margin-right: 30px;
+}

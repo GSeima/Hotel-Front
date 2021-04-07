@@ -1,0 +1,20 @@
+.title{
+    text-align: center;
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+
+.checkOut{
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    height: 350px;
+}
+
+.actions-button{
+    text-align: right;
+}
+
+.checkOut-button{
+    background-color: darkgray;
+}

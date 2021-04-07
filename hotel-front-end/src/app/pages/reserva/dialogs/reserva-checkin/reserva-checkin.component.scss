@@ -1,0 +1,20 @@
+.title{
+    text-align: center;
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+
+.checkIn{
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    height: 350px;
+}
+
+.actions-button{
+    text-align: right;
+}
+
+.checkIn-button{
+    background-color: darkgray;
+}

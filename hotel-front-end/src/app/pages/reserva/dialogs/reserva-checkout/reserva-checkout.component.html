@@ -1,0 +1,18 @@
+<h1 class="title">Check-Out</h1>
+<form [formGroup]="taxasReserva">
+    <div mat-dialog-content class="checkOut">
+        <mat-form-field class="taxas">
+            <mat-label>Taxas de Consumo</mat-label>
+            <input type="number" matInput placeholder="Ex. 1000" formControlName="taxasConsumo">
+        </mat-form-field>
+    </div>
+</form>
+
+<div mat-dialog-actions class="actions-button">
+    <button class="cancelar-button" mat-button (click)="cancelar()">
+        Cancelar
+    </button>
+    <button class="checkOut-button" [disabled]="!taxasReserva.valid" mat-raised-button (click)="checkOut()">
+        Cadastrar
+    </button>
+</div>

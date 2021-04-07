@@ -1,0 +1,31 @@
+table {
+    width: 100%;
+}
+
+.button {
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-right: 10px;
+    text-align: right;
+    margin-right: 10px;
+}
+
+.button-fab {
+    background-color: black;
+}
+
+.header-button {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    flex-direction: row-reverse;
+}
+
+.filter-button {
+    margin-left: 40px;
+}
+
+.button-icon{
+    background-color: black;
+}
