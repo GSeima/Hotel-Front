@@ -4,7 +4,7 @@
         <mat-list-item>
             <mat-icon matListIcon>badge</mat-icon>
             <h3 matLine>CPF</h3>
-            <p matLine>{{cliente.cpf}}</p>
+            <p matLine>{{cliente.cpf | mask: '000.000.000-00'}}</p>
         </mat-list-item>
         <mat-list-item>
             <mat-icon matListIcon>person</mat-icon>
@@ -24,7 +24,7 @@
         <mat-list-item>
             <mat-icon matListIcon>phone</mat-icon>
             <h3 matLine>Telefone</h3>
-            <p matLine>{{cliente.telefone}}</p>
+            <p matLine>{{cliente.telefone | mask: '(00)00000-0000'}}</p>
         </mat-list-item>
         <mat-list-item>
             <mat-icon matListIcon>calendar_today</mat-icon>

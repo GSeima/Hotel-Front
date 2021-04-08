@@ -1,10 +1,10 @@
 import { NgModule } from "@angular/core";
 import { SharedModule } from "src/app/shared/shared.module";
 
-import { QuartoPageComponent } from "./components/quarto-page/quarto-page.component";
-import { QuartoService } from "./services/quarto.service";
+import { QuartoPageComponent } from "./quarto-page.component";
 import { RouterModule, Routes } from "@angular/router";
 import { AuthGuard } from "../auth/guards";
+import { QuartoService } from "./quarto.service";
 
 const routes: Routes = [
     {

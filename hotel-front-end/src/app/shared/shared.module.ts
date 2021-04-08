@@ -15,13 +15,14 @@ import { MatSelectModule } from "@angular/material/select";
 import { MatSidenavModule } from "@angular/material/sidenav";
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatTableModule } from "@angular/material/table";
+import { NgxMaskModule, IConfig } from 'ngx-mask'
 import { RouterModule } from "@angular/router";
 import { HeaderModule } from "./header/header.module";
 import { LayoutComponent } from "./layout/layout.component";
 import { SidebarComponent } from "./sidebar/sidebar.component";
 import { SnackBarService } from "./snackBar/snackBar.service";
 
-
+export const options: Partial<IConfig> | (() => Partial<IConfig>) = null;
 
 @NgModule({
   declarations: [
@@ -46,6 +47,7 @@ import { SnackBarService } from "./snackBar/snackBar.service";
     MatSidenavModule,
     MatSnackBarModule,
     MatTableModule,
+    NgxMaskModule.forRoot(options),
     ReactiveFormsModule,
     RouterModule,
   ],
@@ -69,6 +71,7 @@ import { SnackBarService } from "./snackBar/snackBar.service";
     MatSidenavModule,
     MatSnackBarModule,
     MatTableModule,
+    NgxMaskModule,
     ReactiveFormsModule,
     RouterModule,
   ],

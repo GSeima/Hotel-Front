@@ -9,7 +9,7 @@
         <mat-list-item>
             <mat-icon matListIcon>badge</mat-icon>
             <h3 matLine>CPF</h3>
-            <p matLine>{{reserva.cpf}}</p>
+            <p matLine>{{reserva.cpf | mask: '000.000.000-00'}}</p>
         </mat-list-item>
         <mat-list-item>
             <mat-icon matListIcon>person</mat-icon>
@@ -19,7 +19,7 @@
         <mat-list-item>
             <mat-icon matListIcon>group</mat-icon>
             <h3 matLine>Hospedes</h3>
-            <p matLine *ngFor="let hospede of reserva.hospedes">{{hospede.cpf}}</p>
+            <p matLine *ngFor="let hospede of reserva.hospedes">{{hospede.cpf | mask: '000.000.000-00'}}</p>
         </mat-list-item>
         <mat-list-item>
             <mat-icon matListIcon>king_bed</mat-icon>
@@ -31,20 +31,20 @@
             <h3 matLine>Data de Criação</h3>
             <p matLine>{{reserva.dataCriacaoReserva | date:'dd/MM/yyyy HH:mm:ss'}}</p>
         </mat-list-item>
-        <mat-list-item>
+        <mat-list-item *ngIf="reserva.checkIn != null">
             <mat-icon matListIcon>location_on</mat-icon>
             <h3 matLine>Check-In</h3>
             <p matLine>{{reserva.checkIn | date:'dd/MM/yyyy HH:mm:ss'}}</p>
         </mat-list-item>
-        <mat-list-item>
+        <mat-list-item *ngIf="reserva.checkOut != null">
             <mat-icon matListIcon>done</mat-icon>
             <h3 matLine>Check-Out</h3>
             <p matLine>{{reserva.checkOut | date:'dd/MM/yyyy HH:mm:ss'}}</p>
         </mat-list-item>
-        <mat-list-item>
+        <mat-list-item *ngIf="reserva.valorTotal != null">
             <mat-icon matListIcon>attach_money</mat-icon>
             <h3 matLine>Valor Total</h3>
-            <p matLine>{{reserva.valorTotal}}</p>
+            <p matLine>{{reserva.valorTotal | currency: 'BRL'}}</p>
         </mat-list-item>
     </mat-list>
 </div>

@@ -1,8 +1,9 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { HospedesCpfModel } from '../../models/hospedesCpf.model';
-import { ReservaService } from '../../services/reserva.service';
+import { ReservaPageComponent } from '../../reserva-page.component';
+import { ReservaService } from '../../reserva.service';
 
 @Component({
   selector: 'app-reserva-checkin',
@@ -14,19 +15,25 @@ export class ReservaCheckinComponent implements OnInit {
 
   reservaId: number;
 
+  capacidade: number;
+
   hospedes: FormGroup;
 
   cpfs: FormArray;
 
   hospedesCpf: HospedesCpfModel[] = [];
 
+  pagina: ReservaPageComponent;
+
   constructor(
     private dialogRef: MatDialogRef<ReservaCheckinComponent>,
     private formBuilder: FormBuilder,
     private reservaService: ReservaService,
     @Inject(MAT_DIALOG_DATA) public data: number
-  ) {
-    this.reservaId = data;
+  ) 
+  {
+    this.reservaId = data[0];
+    this.capacidade = data[1];
   }
 
   ngOnInit(): void {
@@ -44,7 +51,6 @@ export class ReservaCheckinComponent implements OnInit {
       .checkIn(this.reservaId, this.hospedesCpf)
       .subscribe(() => {
         this.dialogRef.close();
-        window.location.reload();
       })
       this.dialogRef.close();
   }
@@ -55,12 +61,22 @@ export class ReservaCheckinComponent implements OnInit {
 
   criarCampo(): FormGroup {
     return this.formBuilder.group({
-      cpf: '',
+      cpf: new FormControl('', [
+        Validators.required,
+        Validators.pattern('[0-9]*'),
+        Validators.minLength(11),
+        Validators.maxLength(11)
+      ]),
     });
   }
 
   adicionarCpf() {
     this.cpfs = this.hospedes.get('cpfs') as FormArray;
     this.cpfs.push(this.criarCampo());
+  }
+
+  removerCpf(index: number) {
+    this.cpfs = this.hospedes.get('cpfs') as FormArray;
+    this.cpfs.removeAt(index)
   }
 }

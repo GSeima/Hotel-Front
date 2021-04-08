@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
+import { CadastroReservaModel } from '../../models/cadastroReserva.model';
+import { ReservaService } from '../../reserva.service';
 
-import { ReservaService } from '../../services/reserva.service';
 
 @Component({
   selector: 'app-reserva-cadastro',
@@ -14,6 +15,7 @@ export class ReservaCadastroComponent implements OnInit {
 
   reserva = new FormGroup({
     cpf: new FormControl('', [
+      Validators.pattern('[0-9]*'),
       Validators.minLength(11), 
       Validators.maxLength(11),
       Validators.required,
@@ -34,11 +36,14 @@ export class ReservaCadastroComponent implements OnInit {
   }
 
   cadastrar() {
+    let reserva: CadastroReservaModel = {} as CadastroReservaModel;
+
+    reserva = this.reserva.value;
+
     this.reservaService
-      .cadastrar(this.reserva.value)
+      .cadastrar(reserva)
       .subscribe(() => {
         this.dialogRef.close();
-        window.location.reload();
       });
       this.dialogRef.close();
   }

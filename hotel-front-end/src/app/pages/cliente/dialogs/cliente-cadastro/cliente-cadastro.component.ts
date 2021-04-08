@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
-import { CadastroClienteModel } from '../../../models/cadastroCliente.model';
+import { ClienteService } from '../../cliente.service';
+import { CadastroClienteModel } from '../../models/cadastroCliente.model';
 
-import { ClienteService } from '../../../services/cliente.service';
 
 @Component({
   selector: 'app-cliente-cadastro',
@@ -14,12 +14,15 @@ export class ClienteCadastroComponent implements OnInit {
 
   cliente = new FormGroup({
     cpf: new FormControl('', [
+      Validators.required,
       Validators.minLength(11), 
       Validators.maxLength(11),
-      Validators.required
+      Validators.pattern('[0-9]*')
+      
     ]),
     nomeCompleto: new FormControl('', [
       Validators.maxLength(50),
+      Validators.pattern('([a-zA-ZéúíóáÉÚÍÓÁèùìòàÈÙÌÒÀõãñÕÃÑêûîôâÊÛÎÔÂçÇ]+[ ]*)+'),
       Validators.required
     ]),
     dataNascimento: new FormControl('', [
@@ -32,6 +35,7 @@ export class ClienteCadastroComponent implements OnInit {
     telefone: new FormControl('', [
       Validators.minLength(11), 
       Validators.maxLength(11),
+      Validators.pattern('[0-9]*'),
       Validators.required
     ])
   })
@@ -53,7 +57,6 @@ export class ClienteCadastroComponent implements OnInit {
       .cadastrar(cliente)
       .subscribe(() => {
         this.dialogRef.close();
-        window.location.reload();
       });
       this.dialogRef.close();
   }

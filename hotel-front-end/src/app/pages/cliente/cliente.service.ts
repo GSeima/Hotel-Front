@@ -1,14 +1,13 @@
 import { HttpClient, HttpErrorResponse } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { MatSnackBar } from "@angular/material/snack-bar";
-import { Observable, throwError } from "rxjs";
+import { Observable } from "rxjs";
 import { catchError, take } from 'rxjs/operators';
 import { SnackBarService } from "src/app/shared/snackBar/snackBar.service";
 import { environment } from "src/environments/environment";
-import { CadastroClienteModel } from "../models/cadastroCliente.model";
+import { CadastroClienteModel } from "./models/cadastroCliente.model";
 
-import { Cliente } from "../models/cliente.model";
-import { ObterClienteModel } from "../models/obterCliente.model";
+import { Cliente } from "./models/cliente.model";
+import { ObterClienteModel } from "./models/obterCliente.model";
 
 
 @Injectable({

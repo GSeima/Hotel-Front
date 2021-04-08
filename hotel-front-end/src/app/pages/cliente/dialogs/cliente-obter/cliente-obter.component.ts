@@ -1,7 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { ObterClienteModel } from '../../models/obterCliente.model';
 
-import { ObterClienteModel } from '../../../models/obterCliente.model';
 
 @Component({
   selector: 'app-cliente-obter',

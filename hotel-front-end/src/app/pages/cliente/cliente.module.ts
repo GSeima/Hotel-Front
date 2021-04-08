@@ -3,10 +3,10 @@ import { SharedModule } from "src/app/shared/shared.module";
 import { RouterModule, Routes } from "@angular/router";
 import { AuthGuard } from "../auth/guards";
 
-import { ClientePageComponent } from "./components/cliente-page/cliente-page.component";
-import { ClienteService } from "./services/cliente.service";
-import { ClienteCadastroComponent } from "./components/dialogs/cliente-cadastro/cliente-cadastro.component";
-import { ClienteObterComponent } from "./components/dialogs/cliente-obter/cliente-obter.component";
+import { ClienteService } from "./cliente.service";
+import { ClienteCadastroComponent } from "./dialogs/cliente-cadastro/cliente-cadastro.component";
+import { ClientePageComponent } from "./cliente-page.component";
+import { ClienteObterComponent } from "./dialogs/cliente-obter/cliente-obter.component";
 
 const routes: Routes = [
     {
@@ -21,7 +21,8 @@ const routes: Routes = [
     declarations: [
         ClientePageComponent,
         ClienteCadastroComponent,
-        ClienteObterComponent
+        ClienteObterComponent,
+        ClientePageComponent
     ],
     imports: [
         SharedModule,

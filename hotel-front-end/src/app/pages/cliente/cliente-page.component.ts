@@ -3,11 +3,12 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 
-import { Cliente } from '../../models/cliente.model';
-import { ObterClienteModel } from '../../models/obterCliente.model';
-import { ClienteService } from '../../services/cliente.service';
-import { ClienteCadastroComponent } from '../dialogs/cliente-cadastro/cliente-cadastro.component';
-import { ClienteObterComponent } from '../dialogs/cliente-obter/cliente-obter.component';
+import { ClienteService } from './cliente.service';
+import { ClienteCadastroComponent } from './dialogs/cliente-cadastro/cliente-cadastro.component';
+import { ClienteObterComponent } from './dialogs/cliente-obter/cliente-obter.component';
+import { Cliente } from './models/cliente.model';
+import { ObterClienteModel } from './models/obterCliente.model';
+
 
 @Component({
   selector: 'app-cliente-page',
@@ -28,11 +29,7 @@ export class ClientePageComponent implements OnInit, AfterViewInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
   ngOnInit(){
-    this.clienteService
-    .buscar()
-    .subscribe(clientes => {
-    this.matDataSource.data = clientes;
-    })
+    this.buscarCliente();
   }
 
   ngAfterViewInit(): void {
@@ -44,8 +41,19 @@ export class ClientePageComponent implements OnInit, AfterViewInit {
     this.matDataSource.filter = filterValue.trim().toLowerCase();
   }
 
+  buscarCliente(){
+    this.clienteService
+    .buscar()
+    .subscribe(clientes => {
+    this.matDataSource.data = clientes;
+    });
+  }
+
   cadastroCliente() {
-    this.dialog.open(ClienteCadastroComponent);
+    let dialogRef = this.dialog.open(ClienteCadastroComponent);
+    dialogRef.afterClosed().subscribe(() => {
+      this.buscarCliente();
+    });
   }
 
   obterCliente(cpf: string) {

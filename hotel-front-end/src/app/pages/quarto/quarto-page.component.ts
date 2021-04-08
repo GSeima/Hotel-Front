@@ -1,9 +1,9 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
+import { Quarto } from './models/quarto.model';
+import { QuartoService } from './quarto.service';
 
-import { Quarto } from '../../models/quarto.model';
-import { QuartoService } from '../../services/quarto.service';
 
 @Component({
   selector: 'app-quarto-page',

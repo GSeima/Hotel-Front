@@ -1,8 +1,10 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { TaxasReservaModel } from '../../models/taxasReserva.model';
+import { ReservaPageComponent } from '../../reserva-page.component';
+import { ReservaService } from '../../reserva.service';
 
-import { ReservaService } from '../../services/reserva.service';
 
 @Component({
   selector: 'app-reserva-checkout',
@@ -13,12 +15,13 @@ export class ReservaCheckoutComponent implements OnInit {
 
   reservaId: number;
 
+  pagina: ReservaPageComponent;
 
   taxasReserva = new FormGroup({
     taxasConsumo: new FormControl('', [
       Validators.required,
       Validators.min(0),
-      Validators.max(2000)
+      Validators.max(5000)
     ])
   })
 
@@ -32,15 +35,17 @@ export class ReservaCheckoutComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log(this.reservaId);
   }
 
   checkOut() {
+    let taxasReserva: TaxasReservaModel = {} as TaxasReservaModel;
+
+    taxasReserva = this.taxasReserva.value;
+
     this.reservaService
-      .checkOut(this.reservaId, this.taxasReserva.value)
+      .checkOut(this.reservaId, taxasReserva)
       .subscribe(() =>{
         this.dialogRef.close();
-        window.location.reload();
       });
   }
 
