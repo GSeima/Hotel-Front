@@ -35,12 +35,16 @@ export class ReservaPageComponent implements OnInit, AfterViewInit {
   @ViewChild(MatPaginator) paginator:MatPaginator
 
   ngOnInit(): void {
-    this.atualizarLista();
-    console.log(this.checkboxFinalizados);
+    this.buscarReservas()
   }
 
   ngAfterViewInit(): void {
     this.matDataSource.paginator = this.paginator;
+  }
+
+  filtro(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.matDataSource.filter = filterValue.trim().toLowerCase();
   }
 
   buscarReservas() {
@@ -51,29 +55,6 @@ export class ReservaPageComponent implements OnInit, AfterViewInit {
     });
   }
 
-  buscarReservasAndamento() {
-    this.reservaService
-    .buscarEmAndamento()
-    .subscribe(reservas => {
-      this.matDataSource.data = reservas;
-    });
-  }
-
-  atualizarLista() {
-    console.log(this.checkboxFinalizados);
-    if (!this.checkboxFinalizados) {
-      this.buscarReservas();
-      console.log("Buscando reservas finalizadas: ",this.checkboxFinalizados);
-    }
-    else
-    {
-      this.buscarReservasAndamento();
-      console.log("Buscando reservas em andamento: ",this.checkboxFinalizados);
-    }
-    this.checkboxFinalizados = !this.checkboxFinalizados;
-    console.log(this.checkboxFinalizados);
-  }
-
   obterReserva(reservaId: number) {
     this.reservaService
       .obter(reservaId)
@@ -81,14 +62,13 @@ export class ReservaPageComponent implements OnInit, AfterViewInit {
         this.dialog.open(ObterReservaComponent, {
           data: reserva
         });
-        console.log(reservaId);
       })
   }
 
   cadastroReserva(){
     let dialogRef = this.dialog.open(ReservaCadastroComponent);
     dialogRef.afterClosed().subscribe(() => {
-      this.buscarReservasAndamento();
+      this.buscarReservas();
     });
   }
 
@@ -97,7 +77,7 @@ export class ReservaPageComponent implements OnInit, AfterViewInit {
       data: [reservaId, capacidade]
     });
     dialogRef.afterClosed().subscribe(() => {
-      this.buscarReservasAndamento();
+      this.buscarReservas();
     });
   }
 
@@ -106,7 +86,7 @@ export class ReservaPageComponent implements OnInit, AfterViewInit {
       data: reservaId
     });
     dialogRef.afterClosed().subscribe(() => {
-      this.buscarReservasAndamento();
+      this.buscarReservas();
     });
   }
 

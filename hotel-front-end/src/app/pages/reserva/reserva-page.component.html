@@ -1,8 +1,9 @@
 <app-layout>
   <div class="button">
-    <section class="section">
-      <mat-checkbox class="checkbox" (click)="atualizarLista()">Finalizados</mat-checkbox>
-    </section>
+    <mat-form-field class="filter-button">
+      <mat-label>Procurar</mat-label>
+      <input matInput (keyup)="filtro($event)" #input>
+    </mat-form-field>
     <button class="button-fab" mat-fab (click)="cadastroReserva()">
       <mat-icon class="button-icon">post_add</mat-icon>
     </button>
