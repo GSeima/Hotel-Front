@@ -2,20 +2,19 @@ import { HttpClient, HttpErrorResponse } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { catchError, take } from 'rxjs/operators';
-import { SnackBarService } from "src/app/shared/snackBar/snackBar.service";
+import { SnackBarService } from "src/app/shared/snackbar/snackBar.service";
 import { environment } from "src/environments/environment";
 import { CadastroClienteModel } from "./models/cadastroCliente.model";
 
 import { Cliente } from "./models/cliente.model";
 import { ObterClienteModel } from "./models/obterCliente.model";
 
+let apiUrl = environment.apiUrl;
 
 @Injectable({
     providedIn: 'root'
 })
 export class ClienteService {
-
-    apiUrl = environment.apiUrl
 
     constructor(
         private http: HttpClient,
@@ -24,7 +23,7 @@ export class ClienteService {
 
     buscar(): Observable<Cliente[]> {
         return this.http
-            .get<Cliente[]>(`${this.apiUrl}/cliente`)
+            .get<Cliente[]>(`${apiUrl}/cliente`)
             .pipe(
                 take(1)
             );
@@ -32,11 +31,13 @@ export class ClienteService {
 
     obter(cpf: string): Observable<ObterClienteModel> {
         return this.http
-            .get<ObterClienteModel>(`${this.apiUrl}/cliente/${cpf}`)
+            .get<ObterClienteModel>(`${apiUrl}/cliente/${cpf}`)
             .pipe(
                 take(1),
                 catchError((error: HttpErrorResponse) => {
-                    this.snackBar.erroSnackBar(error.error.split(':', 2)[1].split(' at', 1));
+                    this.snackBar.erroSnackBar(
+                        error
+                    );
                     throw error
                 })
             );
@@ -44,11 +45,13 @@ export class ClienteService {
 
     cadastrar(cliente: CadastroClienteModel): Observable<CadastroClienteModel> {
         return this.http
-            .post<CadastroClienteModel>(`${this.apiUrl}/cliente/cadastro`, cliente)
+            .post<CadastroClienteModel>(`${apiUrl}/cliente/cadastro`, cliente)
             .pipe(
                 take(1),
                 catchError((error: HttpErrorResponse) => {
-                    this.snackBar.erroSnackBar(error.error.split(':', 2)[1].split(' at', 1));
+                    this.snackBar.erroSnackBar(
+                        error
+                    );
                     throw error
                 })
             );

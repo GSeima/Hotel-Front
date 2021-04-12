@@ -48,17 +48,42 @@ export class ClienteCadastroComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  cadastrar() {
-    let cliente: CadastroClienteModel = { } as CadastroClienteModel;
+  mensagemCadastro(campo: string) {
+    if (this.cliente.get('cpf').hasError('required') && campo == "cpf") {
+      return 'Digite o cpf do cliente.';
+    }
 
-    cliente = this.cliente.value;
+    if (this.cliente.get('nomeCompleto').hasError('required') && campo == "nomeCompleto") {
+      return 'Digite o nome do cliente.';
+    }
+
+    if (this.cliente.get('dataNascimento').hasError('required') && campo == "dataNascimento") {
+      return 'Digite a data de nascimento do cliente.'
+    }
+
+    if (this.cliente.get('email').hasError('required') && campo == "email") {
+      return 'Digite o email do cliente.';
+    }
+
+    if (this.cliente.get('telefone').hasError('required') && campo == "telefone") {
+      return 'Digite o telefone do cliente.';
+    }
+  }
+
+  cadastrar() {
+    let cliente: CadastroClienteModel = {
+      cpf: this.cliente.get('cpf').value,
+      nomeCompleto: this.cliente.get('nomeCompleto').value,
+      dataNascimento: this.cliente.get('dataNascimento').value,
+      email: this.cliente.get('email').value,
+      telefone: this.cliente.get('telefone').value,
+     } as CadastroClienteModel;
 
     this.clienteService
       .cadastrar(cliente)
       .subscribe(() => {
         this.dialogRef.close();
       });
-      this.dialogRef.close();
   }
 
   cancelar() {

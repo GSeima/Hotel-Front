@@ -7,6 +7,7 @@ import { ObterReservaComponent } from './dialogs/obter-reserva/obter-reserva.com
 import { ReservaCadastroComponent } from './dialogs/reserva-cadastro/reserva-cadastro.component';
 import { ReservaCheckinComponent } from './dialogs/reserva-checkin/reserva-checkin.component';
 import { ReservaCheckoutComponent } from './dialogs/reserva-checkout/reserva-checkout.component';
+import { CheckInModel } from './models/checkIn.model';
 import { ObterReservaModel } from './models/obterReserva.model';
 import { Reserva } from './models/reserva.model';
 import { ReservaService } from './reserva.service';
@@ -18,8 +19,6 @@ import { ReservaService } from './reserva.service';
   styleUrls: ['./reserva-page.component.scss']
 })
 export class ReservaPageComponent implements OnInit, AfterViewInit {
-
-  checkboxFinalizados: boolean = true;
 
   matDataSource = new MatTableDataSource<Reserva>();
 
@@ -73,8 +72,9 @@ export class ReservaPageComponent implements OnInit, AfterViewInit {
   }
 
   checkIn(reservaId: number, capacidade: number){
+    let checkInModel: CheckInModel = {reservaId, capacidade};
     let dialogRef = this.dialog.open(ReservaCheckinComponent, {
-      data: [reservaId, capacidade]
+      data: checkInModel
     });
     dialogRef.afterClosed().subscribe(() => {
       this.buscarReservas();

@@ -3,12 +3,14 @@
     <div mat-dialog-content class="cadastro">
         <mat-form-field class="cpf">
             <mat-label>CPF</mat-label>
-            <input type="text" matInput placeholder="Ex. 12345678900" formControlName="cpf">
+            <input type="text" matInput mask="000.000.000-00" placeholder="Ex. 12345678900" formControlName="cpf" autocomplete="off">
+            <mat-error *ngIf="reserva.invalid">{{mensagemReserva("cpf")}}</mat-error>
         </mat-form-field>
 
         <mat-form-field>
             <mat-label>Numero do Quarto</mat-label>
-            <input type="number" matInput placeholder="Ex. 1" formControlName="quartoId">
+            <input type="number" matInput placeholder="Ex. 1" formControlName="quartoId" autocomplete="off">
+            <mat-error *ngIf="reserva.invalid">{{mensagemReserva("quartoId")}}</mat-error>
         </mat-form-field>
     </div>
 </form>

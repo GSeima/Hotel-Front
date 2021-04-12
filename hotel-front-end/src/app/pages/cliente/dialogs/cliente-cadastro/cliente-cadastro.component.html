@@ -3,31 +3,36 @@
     <div mat-dialog-content class="cadastro">
         <mat-form-field class="cpf">
             <mat-label>CPF</mat-label>
-            <input type="text" matInput placeholder="Ex. 12345678900" autocomplete="f" formControlName="cpf">
+            <input type="text" mask="000.000.000-00" matInput placeholder="Ex. 12345678900" autocomplete="off" formControlName="cpf">
+            <mat-error *ngIf="cliente.invalid">{{mensagemCadastro("cpf")}}</mat-error>
         </mat-form-field>
 
         <mat-form-field>
             <mat-label>Nome Completo</mat-label>
-            <input type="name" matInput placeholder="Ex. Ana Silva" formControlName="nomeCompleto">
+            <input type="name" matInput placeholder="Ex. Ana Silva" formControlName="nomeCompleto" autocomplete="off">
+            <mat-error *ngIf="cliente.invalid">{{mensagemCadastro("nomeCompleto")}}</mat-error>
         </mat-form-field>
 
 
         <mat-form-field>
             <mat-label>Data de Nascimento</mat-label>
-            <input matInput [matDatepicker]="picker" formControlName="dataNascimento">
+            <input matInput [matDatepicker]="picker" formControlName="dataNascimento" autocomplete="off">
             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
             <mat-datepicker #picker></mat-datepicker>
+            <mat-error *ngIf="cliente.invalid">{{mensagemCadastro("dataNascimento")}}</mat-error>
         </mat-form-field>
 
 
         <mat-form-field>
             <mat-label>Email</mat-label>
-            <input type="email" matInput placeholder="Ex. email@example.com" formControlName="email">
+            <input type="email" matInput placeholder="Ex. email@example.com" formControlName="email" autocomplete="off">
+            <mat-error *ngIf="cliente.invalid">{{mensagemCadastro("email")}}</mat-error>
         </mat-form-field>
 
         <mat-form-field>
             <mat-label>Telefone</mat-label>
-            <input type="tel" matInput placeholder="Ex. 41998765432" formControlName="telefone">
+            <input type="tel" matInput mask="(00)00000-0000" placeholder="Ex. 41998765432" formControlName="telefone" autocomplete="off">
+            <mat-error *ngIf="cliente.invalid">{{mensagemCadastro("telefone")}}</mat-error>
         </mat-form-field>
     </div>
 </form>

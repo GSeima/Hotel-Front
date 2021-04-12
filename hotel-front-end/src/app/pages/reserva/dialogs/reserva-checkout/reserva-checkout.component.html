@@ -3,7 +3,8 @@
     <div mat-dialog-content class="checkOut">
         <mat-form-field class="taxas">
             <mat-label>Taxas de Consumo</mat-label>
-            <input type="number" matInput placeholder="Ex. 1000" formControlName="taxasConsumo">
+            <input type="number" matInput placeholder="Ex. 1000" formControlName="taxasConsumo" autocomplete="off">
+            <mat-error *ngIf="taxasReserva.invalid">{{mensagemCheckOut("taxasConsumo")}}</mat-error>
         </mat-form-field>
     </div>
 </form>

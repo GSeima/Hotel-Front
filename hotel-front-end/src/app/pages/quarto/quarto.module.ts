@@ -9,7 +9,6 @@ import { QuartoService } from "./quarto.service";
 const routes: Routes = [
     {
         path: '',
-        pathMatch: 'full',
         canActivate: [AuthGuard],
         component: QuartoPageComponent
     }

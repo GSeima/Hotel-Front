@@ -11,7 +11,6 @@ import { ClienteObterComponent } from "./dialogs/cliente-obter/cliente-obter.com
 const routes: Routes = [
     {
       path: '',
-      pathMatch: 'full',
       canActivate: [AuthGuard],
       component: ClientePageComponent
     },

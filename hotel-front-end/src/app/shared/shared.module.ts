@@ -1,6 +1,7 @@
 import { CommonModule } from "@angular/common";
 import { NgModule } from "@angular/core";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatButtonModule } from "@angular/material/button";
 import { MatCheckboxModule } from "@angular/material/checkbox";
 import { MatNativeDateModule } from "@angular/material/core";
@@ -20,7 +21,7 @@ import { RouterModule } from "@angular/router";
 import { HeaderModule } from "./header/header.module";
 import { LayoutComponent } from "./layout/layout.component";
 import { SidebarComponent } from "./sidebar/sidebar.component";
-import { SnackBarService } from "./snackBar/snackBar.service";
+import { SnackBarService } from "./snackbar/snackBar.service";
 
 export const options: Partial<IConfig> | (() => Partial<IConfig>) = null;
 
@@ -32,6 +33,7 @@ export const options: Partial<IConfig> | (() => Partial<IConfig>) = null;
   imports: [
     CommonModule,
     FormsModule,
+    FlexLayoutModule,
     HeaderModule,
     MatButtonModule,
     MatCheckboxModule,
@@ -56,6 +58,7 @@ export const options: Partial<IConfig> | (() => Partial<IConfig>) = null;
     LayoutComponent,
     CommonModule,
     FormsModule,
+    FlexLayoutModule,
     HeaderModule,
     MatButtonModule,
     MatCheckboxModule,

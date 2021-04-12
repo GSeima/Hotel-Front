@@ -35,17 +35,27 @@ export class ReservaCadastroComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  cadastrar() {
-    let reserva: CadastroReservaModel = {} as CadastroReservaModel;
+  mensagemReserva(campo: string) {
+    if (this.reserva.get('cpf').hasError('required') && campo == "cpf") {
+      return 'Digite o cpf do cliente.';
+    }
 
-    reserva = this.reserva.value;
+    if (this.reserva.get('quartoId').hasError('required') && campo == "quartoId") {
+      return 'Digite o número do quarto.';
+    }
+  }
+
+  cadastrar() {
+    let reserva: CadastroReservaModel = {
+      cpf: this.reserva.get('cpf').value,
+      quartoId: this.reserva.get('quartoId').value
+    } as CadastroReservaModel;
 
     this.reservaService
       .cadastrar(reserva)
       .subscribe(() => {
         this.dialogRef.close();
       });
-      this.dialogRef.close();
   }
 
   cancelar() {

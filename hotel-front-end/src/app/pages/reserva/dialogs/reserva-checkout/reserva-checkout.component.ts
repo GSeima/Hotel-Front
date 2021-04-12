@@ -2,7 +2,6 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { TaxasReservaModel } from '../../models/taxasReserva.model';
-import { ReservaPageComponent } from '../../reserva-page.component';
 import { ReservaService } from '../../reserva.service';
 
 
@@ -14,8 +13,6 @@ import { ReservaService } from '../../reserva.service';
 export class ReservaCheckoutComponent implements OnInit {
 
   reservaId: number;
-
-  pagina: ReservaPageComponent;
 
   taxasReserva = new FormGroup({
     taxasConsumo: new FormControl('', [
@@ -37,10 +34,16 @@ export class ReservaCheckoutComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  checkOut() {
-    let taxasReserva: TaxasReservaModel = {} as TaxasReservaModel;
+  mensagemCheckOut(campo: string) {
+    if (this.taxasReserva.get('taxasConsumo').hasError('required') && campo == "taxasConsumo") {
+      return 'Digite o valor das taxas consumidas pelo cliente.';
+    }
+  }
 
-    taxasReserva = this.taxasReserva.value;
+  checkOut() {
+    let taxasReserva: TaxasReservaModel = {
+      taxasConsumo: this.taxasReserva.get('taxasConsumo').value
+    } as TaxasReservaModel;
 
     this.reservaService
       .checkOut(this.reservaId, taxasReserva)

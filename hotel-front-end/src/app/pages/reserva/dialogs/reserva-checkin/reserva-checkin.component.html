@@ -5,7 +5,7 @@
             <mat-label>CPF</mat-label>
             <div [formGroupName]="i" class="formulario">
                 <div>
-                    <input type="text" matInput placeholder="Ex. 12345678901" formControlName="cpf">
+                    <input type="text" matInput mask="000.000.000-00" placeholder="Ex. 12345678901" formControlName="cpf" autocomplete="off">
                 </div>
                 <div>
                     <button type="button" mat-button class="btn-del" [disabled]="cpfs.length == 1" (click)="removerCpf(i)">

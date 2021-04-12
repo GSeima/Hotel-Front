@@ -1,8 +1,8 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { CheckInModel } from '../../models/checkIn.model';
 import { HospedesCpfModel } from '../../models/hospedesCpf.model';
-import { ReservaPageComponent } from '../../reserva-page.component';
 import { ReservaService } from '../../reserva.service';
 
 @Component({
@@ -21,19 +21,15 @@ export class ReservaCheckinComponent implements OnInit {
 
   cpfs: FormArray;
 
-  hospedesCpf: HospedesCpfModel[] = [];
-
-  pagina: ReservaPageComponent;
-
   constructor(
     private dialogRef: MatDialogRef<ReservaCheckinComponent>,
     private formBuilder: FormBuilder,
     private reservaService: ReservaService,
-    @Inject(MAT_DIALOG_DATA) public data: number
+    @Inject(MAT_DIALOG_DATA) public data: CheckInModel
   ) 
   {
-    this.reservaId = data[0];
-    this.capacidade = data[1];
+    this.reservaId = data.reservaId;
+    this.capacidade = data.capacidade;
   }
 
   ngOnInit(): void {
@@ -43,16 +39,22 @@ export class ReservaCheckinComponent implements OnInit {
     this.cpfs = new FormArray([]);
   }
 
+  mensagemCheckIn(campo: string) {
+    if (this.hospedes.get('cpf').hasError('required') && campo == "cpf") {
+      return 'Digite o cpf do cliente.';
+    }
+  }
+
   checkIn() {
+    let hospedesCpf: HospedesCpfModel[] = [];
     this.hospedes.get('cpfs').value.forEach(element => {
-      this.hospedesCpf.push(element);
+      hospedesCpf.push(element);
     });
     this.reservaService
-      .checkIn(this.reservaId, this.hospedesCpf)
+      .checkIn(this.reservaId, hospedesCpf)
       .subscribe(() => {
         this.dialogRef.close();
-      })
-      this.dialogRef.close();
+      });
   }
 
   cancelar() {
