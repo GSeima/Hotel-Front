@@ -39,12 +39,6 @@ export class ReservaCheckinComponent implements OnInit {
     this.cpfs = new FormArray([]);
   }
 
-  mensagemCheckIn(campo: string) {
-    if (this.hospedes.get('cpf').hasError('required') && campo == "cpf") {
-      return 'Digite o cpf do cliente.';
-    }
-  }
-
   checkIn() {
     let hospedesCpf: HospedesCpfModel[] = [];
     this.hospedes.get('cpfs').value.forEach(element => {

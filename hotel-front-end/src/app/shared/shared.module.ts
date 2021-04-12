@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { NgModule } from "@angular/core";
+import { NgModule, Pipe } from "@angular/core";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatButtonModule } from "@angular/material/button";
@@ -22,13 +22,15 @@ import { HeaderModule } from "./header/header.module";
 import { LayoutComponent } from "./layout/layout.component";
 import { SidebarComponent } from "./sidebar/sidebar.component";
 import { SnackBarService } from "./snackbar/snackBar.service";
+import { HumanizeFormMessagesPipe } from "./humanize/humanize.pipe";
 
 export const options: Partial<IConfig> | (() => Partial<IConfig>) = null;
 
 @NgModule({
   declarations: [
     SidebarComponent,
-    LayoutComponent
+    LayoutComponent,
+    HumanizeFormMessagesPipe
   ],
   imports: [
     CommonModule,
@@ -54,6 +56,7 @@ export const options: Partial<IConfig> | (() => Partial<IConfig>) = null;
     RouterModule,
   ],
   exports: [
+    HumanizeFormMessagesPipe,
     SidebarComponent,
     LayoutComponent,
     CommonModule,

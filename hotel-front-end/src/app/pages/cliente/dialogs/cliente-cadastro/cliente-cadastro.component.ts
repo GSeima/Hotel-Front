@@ -48,28 +48,6 @@ export class ClienteCadastroComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  mensagemCadastro(campo: string) {
-    if (this.cliente.get('cpf').hasError('required') && campo == "cpf") {
-      return 'Digite o cpf do cliente.';
-    }
-
-    if (this.cliente.get('nomeCompleto').hasError('required') && campo == "nomeCompleto") {
-      return 'Digite o nome do cliente.';
-    }
-
-    if (this.cliente.get('dataNascimento').hasError('required') && campo == "dataNascimento") {
-      return 'Digite a data de nascimento do cliente.'
-    }
-
-    if (this.cliente.get('email').hasError('required') && campo == "email") {
-      return 'Digite o email do cliente.';
-    }
-
-    if (this.cliente.get('telefone').hasError('required') && campo == "telefone") {
-      return 'Digite o telefone do cliente.';
-    }
-  }
-
   cadastrar() {
     let cliente: CadastroClienteModel = {
       cpf: this.cliente.get('cpf').value,

@@ -28,7 +28,7 @@ export class ReservaService {
             .get<Reserva[]>(`${apiUrl}/reserva`)
             .pipe(
                 take(1)
-            )
+            );
     }
 
     obter(reservaId: number): Observable<ObterReservaModel> {
@@ -40,9 +40,9 @@ export class ReservaService {
                     this.snackBar.erroSnackBar(
                         error
                     );
-                    throw error
+                    throw error;
                 })
-            )
+            );
     }
 
     cadastrar(reserva: CadastroReservaModel): Observable<CadastroReservaModel> {
@@ -68,9 +68,9 @@ export class ReservaService {
                     this.snackBar.erroSnackBar(
                         error
                     );
-                    throw error
+                    throw error;
                 })
-            )
+            );
     }
 
     checkOut(reservaId: number, taxas: TaxasReservaModel) {
@@ -82,8 +82,8 @@ export class ReservaService {
                     this.snackBar.erroSnackBar(
                         error
                     );
-                    throw error
+                    throw error;
                 })
-            )
+            );
     }
 }

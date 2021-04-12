@@ -34,12 +34,6 @@ export class ReservaCheckoutComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  mensagemCheckOut(campo: string) {
-    if (this.taxasReserva.get('taxasConsumo').hasError('required') && campo == "taxasConsumo") {
-      return 'Digite o valor das taxas consumidas pelo cliente.';
-    }
-  }
-
   checkOut() {
     let taxasReserva: TaxasReservaModel = {
       taxasConsumo: this.taxasReserva.get('taxasConsumo').value

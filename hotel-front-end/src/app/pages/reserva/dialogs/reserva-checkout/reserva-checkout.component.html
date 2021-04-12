@@ -4,7 +4,9 @@
         <mat-form-field class="taxas">
             <mat-label>Taxas de Consumo</mat-label>
             <input type="number" matInput placeholder="Ex. 1000" formControlName="taxasConsumo" autocomplete="off">
-            <mat-error *ngIf="taxasReserva.invalid">{{mensagemCheckOut("taxasConsumo")}}</mat-error>
+            <mat-error *ngIf="taxasReserva.get('taxasConsumo').touched && taxasReserva.get('taxasConsumo').errors">
+                {{taxasReserva.get('taxasConsumo').errors | humanizeFormMessages: 'Taxas de Consumo'}}
+            </mat-error>
         </mat-form-field>
     </div>
 </form>
