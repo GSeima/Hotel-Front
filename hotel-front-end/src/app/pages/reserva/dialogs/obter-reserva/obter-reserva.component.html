@@ -32,6 +32,16 @@
                 <h3 matLine>Data de Criação</h3>
                 <p matLine>{{reserva.dataCriacaoReserva | date:'dd/MM/yyyy HH:mm:ss'}}</p>
             </mat-list-item>
+            <mat-list-item>
+                <mat-icon matListIcon>meeting_room</mat-icon>
+                <h3 matLine>Data de Entrada</h3>
+                <p matLine>{{reserva.dataEntrada | date:'dd/MM/yyyy'}}</p>
+            </mat-list-item>
+            <mat-list-item>
+                <mat-icon matListIcon>door_back</mat-icon>
+                <h3 matLine>Data de Saída</h3>
+                <p matLine>{{reserva.dataSaida | date:'dd/MM/yyyy'}}</p>
+            </mat-list-item>
             <mat-list-item *ngIf="reserva.checkIn != null">
                 <mat-icon matListIcon>location_on</mat-icon>
                 <h3 matLine>Check-In</h3>

@@ -5,6 +5,8 @@ export interface ObterReservaModel {
     hospedes: Array<string>
     quartoId: number
     dataCriacaoReserva: Date
+    dataEntrada: Date
+    dataSaida: Date
     checkIn: Date
     checkOut: Date
     valorTotal: number

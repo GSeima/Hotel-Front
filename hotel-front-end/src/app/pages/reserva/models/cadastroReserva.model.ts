@@ -1,4 +1,6 @@
 export interface CadastroReservaModel {
-    cpf: string,
+    cpf: string
     quartoId: number
+    dataEntrada: Date
+    dataSaida: Date
 }
