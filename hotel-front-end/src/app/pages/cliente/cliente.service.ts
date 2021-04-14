@@ -7,7 +7,6 @@ import { environment } from "src/environments/environment";
 import { CadastroClienteModel } from "./models/cadastroCliente.model";
 
 import { Cliente } from "./models/cliente.model";
-import { EditarClienteModel } from "./models/editarCliente.model";
 import { ObterClienteModel } from "./models/obterCliente.model";
 
 let apiUrl = environment.apiUrl;
@@ -58,9 +57,9 @@ export class ClienteService {
             );
     }
 
-    editar(cliente: CadastroClienteModel): Observable<EditarClienteModel> {
+    editar(cliente: CadastroClienteModel): Observable<CadastroClienteModel> {
         return this.http
-            .put<EditarClienteModel>(`${apiUrl}/cliente/${cliente.cpf}/editar`, cliente)
+            .put<CadastroClienteModel>(`${apiUrl}/cliente/${cliente.cpf}/editar`, cliente)
             .pipe(
                 take(1),
                 catchError((error: HttpErrorResponse) => {

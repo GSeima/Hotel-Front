@@ -19,7 +19,7 @@ export class ReservaCheckinComponent implements OnInit {
 
   hospedes: FormGroup;
 
-  cpfs: FormArray;
+  cpfs: FormArray = new FormArray([]);
 
   constructor(
     private dialogRef: MatDialogRef<ReservaCheckinComponent>,
@@ -33,10 +33,9 @@ export class ReservaCheckinComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.hospedes = new FormGroup({
-      cpfs: new FormArray([])
+    this.hospedes = this.formBuilder.group({
+      cpfs: this.formBuilder.array([ this.criarCampo()])
     });
-    this.cpfs = new FormArray([]);
   }
 
   checkIn() {

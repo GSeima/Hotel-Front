@@ -8,7 +8,6 @@ import { ClienteCadastroComponent } from './dialogs/cliente-cadastro/cliente-cad
 import { ClienteObterComponent } from './dialogs/cliente-obter/cliente-obter.component';
 import { CadastroClienteModel } from './models/cadastroCliente.model';
 import { Cliente } from './models/cliente.model';
-import { EditarClienteModel } from './models/editarCliente.model';
 import { ObterClienteModel } from './models/obterCliente.model';
 
 
@@ -24,9 +23,7 @@ export class ClientePageComponent implements OnInit, AfterViewInit {
 
   clientes: Cliente[];
 
-  modoEditar = false;
-
-  displayedColumns = ['menu', 'cpf', 'nomeCompleto', 'dataNascimento','email', 'telefone'];
+  displayedColumns = ['menu', 'cpf', 'nomeCompleto', 'email', 'telefone'];
 
   constructor(private clienteService: ClienteService, private dialog: MatDialog) { }
 
@@ -54,9 +51,9 @@ export class ClientePageComponent implements OnInit, AfterViewInit {
   }
 
   cadastroCliente() {
-    this.modoEditar = false;
+    let modoEditar = false;
     let dialogRef = this.dialog.open(ClienteCadastroComponent, {
-      data: this.modoEditar
+      data: modoEditar
     });
     dialogRef.afterClosed().subscribe(() => {
       this.buscarCliente();
@@ -74,9 +71,9 @@ export class ClientePageComponent implements OnInit, AfterViewInit {
   }
 
   editarCliente(cliente: CadastroClienteModel) {
-    this.modoEditar = true;
+    let modoEditar = true;
     let dialogRef = this.dialog.open(ClienteCadastroComponent, {
-      data: {cliente: cliente, modoEditar: this.modoEditar}
+      data: {cliente: cliente, modoEditar: modoEditar}
     });
     dialogRef.afterClosed().subscribe(() => {
       this.buscarCliente();

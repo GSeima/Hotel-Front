@@ -8,13 +8,13 @@
                     <input type="text" matInput mask="000.000.000-00" placeholder="Ex. 12345678901" formControlName="cpf" autocomplete="off">
                 </div>
                 <div>
-                    <button type="button" mat-button class="btn-del" [disabled]="cpfs.length == 1" (click)="removerCpf(i)">
+                    <button type="button" mat-button class="btn-del"  [disabled]="cpfs.length == 1" (click)="removerCpf(i)">
                         <mat-icon>remove</mat-icon>
                     </button>
                 </div>
             </div>
         </mat-form-field>
-        <button type="button" mat-button class="btn-add" [disabled]="cpfs.length >= capacidade" (click)="adicionarCpf()">
+        <button type="button" mat-button class="btn-add" [disabled]="cpfs.length == capacidade" (click)="adicionarCpf()">
             <mat-icon>add</mat-icon>
         </button>
     </div>

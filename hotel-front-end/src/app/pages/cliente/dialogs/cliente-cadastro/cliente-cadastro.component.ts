@@ -1,10 +1,8 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { inject } from '@angular/core/testing';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ClienteService } from '../../cliente.service';
 import { CadastroClienteModel } from '../../models/cadastroCliente.model';
-import { EditarClienteModel } from '../../models/editarCliente.model';
 
 
 @Component({
@@ -16,7 +14,24 @@ export class ClienteCadastroComponent implements OnInit {
 
   cliente: FormGroup;
 
+  editarCliente: CadastroClienteModel;
+
+  modoEditar: boolean;
+
+  constructor(
+    private dialogRef: MatDialogRef<ClienteCadastroComponent>,
+    private clienteService: ClienteService,
+    @Inject(MAT_DIALOG_DATA) public data: {
+      cliente: CadastroClienteModel,
+      modoEditar: boolean
+    }) 
+  {
+    this.editarCliente = data.cliente;
+    this.modoEditar = data.modoEditar;
+  }
+
   formulario() {
+    
     let cpf = "";
     let nomeCompleto = "";
     let dataNascimento = null;
@@ -62,22 +77,6 @@ export class ClienteCadastroComponent implements OnInit {
     })
   }
 
-  editarCliente: CadastroClienteModel;
-
-  modoEditar: boolean = false;
-
-  constructor(
-    private dialogRef: MatDialogRef<ClienteCadastroComponent>,
-    private clienteService: ClienteService,
-    @Inject(MAT_DIALOG_DATA) public data: {
-      cliente: CadastroClienteModel,
-      modoEditar: boolean
-    }
-  ) {
-    this.editarCliente = data.cliente;
-    this.modoEditar = data.modoEditar;
-  }
-
   ngOnInit(): void {
     this.formulario();
   }
@@ -106,13 +105,12 @@ export class ClienteCadastroComponent implements OnInit {
       email: this.cliente.get('email').value,
       telefone: this.cliente.get('telefone').value,
     } as CadastroClienteModel;
+    
     this.clienteService
       .editar(cliente)
       .subscribe(() => {
         this.dialogRef.close();
       })
-
-
   }
 
   cancelar() {
