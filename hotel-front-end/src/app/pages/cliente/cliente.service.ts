@@ -7,6 +7,7 @@ import { environment } from "src/environments/environment";
 import { CadastroClienteModel } from "./models/cadastroCliente.model";
 
 import { Cliente } from "./models/cliente.model";
+import { EditarClienteModel } from "./models/editarCliente.model";
 import { ObterClienteModel } from "./models/obterCliente.model";
 
 let apiUrl = environment.apiUrl;
@@ -19,7 +20,7 @@ export class ClienteService {
     constructor(
         private http: HttpClient,
         private snackBar: SnackBarService
-        ) { }
+    ) { }
 
     buscar(): Observable<Cliente[]> {
         return this.http
@@ -46,6 +47,20 @@ export class ClienteService {
     cadastrar(cliente: CadastroClienteModel): Observable<CadastroClienteModel> {
         return this.http
             .post<CadastroClienteModel>(`${apiUrl}/cliente/cadastro`, cliente)
+            .pipe(
+                take(1),
+                catchError((error: HttpErrorResponse) => {
+                    this.snackBar.erroSnackBar(
+                        error
+                    );
+                    throw error
+                })
+            );
+    }
+
+    editar(cliente: CadastroClienteModel): Observable<EditarClienteModel> {
+        return this.http
+            .put<EditarClienteModel>(`${apiUrl}/cliente/${cliente.cpf}/editar`, cliente)
             .pipe(
                 take(1),
                 catchError((error: HttpErrorResponse) => {

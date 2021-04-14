@@ -6,7 +6,9 @@ import { MatTableDataSource } from '@angular/material/table';
 import { ClienteService } from './cliente.service';
 import { ClienteCadastroComponent } from './dialogs/cliente-cadastro/cliente-cadastro.component';
 import { ClienteObterComponent } from './dialogs/cliente-obter/cliente-obter.component';
+import { CadastroClienteModel } from './models/cadastroCliente.model';
 import { Cliente } from './models/cliente.model';
+import { EditarClienteModel } from './models/editarCliente.model';
 import { ObterClienteModel } from './models/obterCliente.model';
 
 
@@ -22,7 +24,9 @@ export class ClientePageComponent implements OnInit, AfterViewInit {
 
   clientes: Cliente[];
 
-  displayedColumns = ['menu', 'cpf', 'nomeCompleto', 'email', 'telefone'];
+  modoEditar = false;
+
+  displayedColumns = ['menu', 'cpf', 'nomeCompleto', 'dataNascimento','email', 'telefone'];
 
   constructor(private clienteService: ClienteService, private dialog: MatDialog) { }
 
@@ -50,7 +54,10 @@ export class ClientePageComponent implements OnInit, AfterViewInit {
   }
 
   cadastroCliente() {
-    let dialogRef = this.dialog.open(ClienteCadastroComponent);
+    this.modoEditar = false;
+    let dialogRef = this.dialog.open(ClienteCadastroComponent, {
+      data: this.modoEditar
+    });
     dialogRef.afterClosed().subscribe(() => {
       this.buscarCliente();
     });
@@ -64,6 +71,16 @@ export class ClientePageComponent implements OnInit, AfterViewInit {
           data: cliente
         })
       })
+  }
+
+  editarCliente(cliente: CadastroClienteModel) {
+    this.modoEditar = true;
+    let dialogRef = this.dialog.open(ClienteCadastroComponent, {
+      data: {cliente: cliente, modoEditar: this.modoEditar}
+    });
+    dialogRef.afterClosed().subscribe(() => {
+      this.buscarCliente();
+    });
   }
 }
 

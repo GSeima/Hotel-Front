@@ -1,8 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
+import { inject } from '@angular/core/testing';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { MatDialogRef } from '@angular/material/dialog';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ClienteService } from '../../cliente.service';
 import { CadastroClienteModel } from '../../models/cadastroCliente.model';
+import { EditarClienteModel } from '../../models/editarCliente.model';
 
 
 @Component({
@@ -12,40 +14,72 @@ import { CadastroClienteModel } from '../../models/cadastroCliente.model';
 })
 export class ClienteCadastroComponent implements OnInit {
 
-  cliente = new FormGroup({
-    cpf: new FormControl('', [
-      Validators.required,
-      Validators.minLength(11), 
-      Validators.maxLength(11),
-      Validators.pattern('[0-9]*')
-      
-    ]),
-    nomeCompleto: new FormControl('', [
-      Validators.maxLength(50),
-      Validators.pattern('([a-zA-ZéúíóáÉÚÍÓÁèùìòàÈÙÌÒÀõãñÕÃÑêûîôâÊÛÎÔÂçÇ]+[ ]*)+'),
-      Validators.required
-    ]),
-    dataNascimento: new FormControl('', [
-      Validators.required,
-    ]),
-    email: new FormControl('', [
-      Validators.email,
-      Validators.required,
-    ]),
-    telefone: new FormControl('', [
-      Validators.minLength(11), 
-      Validators.maxLength(11),
-      Validators.pattern('[0-9]*'),
-      Validators.required
-    ])
-  })
+  cliente: FormGroup;
+
+  formulario() {
+    let cpf = "";
+    let nomeCompleto = "";
+    let dataNascimento = null;
+    let email = "";
+    let telefone = "";
+
+    if (this.modoEditar) {
+      cpf = this.editarCliente.cpf;
+      nomeCompleto = this.editarCliente.nomeCompleto;
+      dataNascimento = this.editarCliente.dataNascimento;
+      email = this.editarCliente.email;
+      telefone = this.editarCliente.telefone;
+    }
+
+    this.cliente = new FormGroup({
+      cpf: new FormControl({ value: cpf, disabled: this.modoEditar },
+        [
+          Validators.required,
+          Validators.minLength(11),
+          Validators.maxLength(11),
+          Validators.pattern('[0-9]*')
+
+        ]),
+      nomeCompleto: new FormControl(nomeCompleto, [
+        Validators.maxLength(50),
+        Validators.pattern('([a-zA-ZéúíóáÉÚÍÓÁèùìòàÈÙÌÒÀõãñÕÃÑêûîôâÊÛÎÔÂçÇ]+[ ]*)+'),
+        Validators.required
+      ]),
+      dataNascimento: new FormControl({ value: dataNascimento, disabled: this.modoEditar },
+        [
+          Validators.required,
+        ]),
+      email: new FormControl(email, [
+        Validators.email,
+        Validators.required,
+      ]),
+      telefone: new FormControl(telefone, [
+        Validators.minLength(11),
+        Validators.maxLength(11),
+        Validators.pattern('[0-9]*'),
+        Validators.required
+      ])
+    })
+  }
+
+  editarCliente: CadastroClienteModel;
+
+  modoEditar: boolean = false;
 
   constructor(
     private dialogRef: MatDialogRef<ClienteCadastroComponent>,
     private clienteService: ClienteService,
-  ) { }
+    @Inject(MAT_DIALOG_DATA) public data: {
+      cliente: CadastroClienteModel,
+      modoEditar: boolean
+    }
+  ) {
+    this.editarCliente = data.cliente;
+    this.modoEditar = data.modoEditar;
+  }
 
   ngOnInit(): void {
+    this.formulario();
   }
 
   cadastrar() {
@@ -55,13 +89,30 @@ export class ClienteCadastroComponent implements OnInit {
       dataNascimento: this.cliente.get('dataNascimento').value,
       email: this.cliente.get('email').value,
       telefone: this.cliente.get('telefone').value,
-     } as CadastroClienteModel;
+    } as CadastroClienteModel;
 
     this.clienteService
       .cadastrar(cliente)
       .subscribe(() => {
         this.dialogRef.close();
       });
+  }
+
+  editar() {
+    let cliente: CadastroClienteModel = {
+      cpf: this.cliente.get('cpf').value,
+      nomeCompleto: this.cliente.get('nomeCompleto').value,
+      dataNascimento: this.cliente.get('dataNascimento').value,
+      email: this.cliente.get('email').value,
+      telefone: this.cliente.get('telefone').value,
+    } as CadastroClienteModel;
+    this.clienteService
+      .editar(cliente)
+      .subscribe(() => {
+        this.dialogRef.close();
+      })
+
+
   }
 
   cancelar() {
