@@ -9,13 +9,13 @@
                 </div>
                 <div>
                     <button type="button" mat-button class="btn-del"  [disabled]="cpfs.length == 1" (click)="removerCpf(i)">
-                        <mat-icon>remove</mat-icon>
+                        <mat-icon class="icon-del">remove</mat-icon>
                     </button>
                 </div>
             </div>
         </mat-form-field>
         <button type="button" mat-button class="btn-add" [disabled]="cpfs.length == capacidade" (click)="adicionarCpf()">
-            <mat-icon>add</mat-icon>
+            <mat-icon class="icon-add">add</mat-icon>
         </button>
     </div>
 </form>

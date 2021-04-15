@@ -44,7 +44,6 @@ export class ReservaCadastroComponent implements OnInit {
   } 
 
   ngOnInit(): void {
-    
   }
 
   cadastrar() {

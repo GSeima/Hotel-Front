@@ -23,6 +23,7 @@
                 <p matLine>{{reserva.quartoId}}</p>
             </mat-list-item>
         </div>
+        <hr>
         <div fxLayout="row" fxLayout.lt-md="column">
             <mat-list-item>
                 <mat-icon matListIcon>calendar_today</mat-icon>
@@ -40,6 +41,7 @@
                 <p matLine>{{reserva.dataSaida | date:'dd/MM/yyyy'}}</p>
             </mat-list-item>
         </div>
+        <hr>
         <div  fxLayout="row" fxLayout.lt-md="column">
             <mat-list-item *ngIf="reserva.checkIn != null">
                 <mat-icon matListIcon>group</mat-icon>
