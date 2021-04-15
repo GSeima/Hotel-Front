@@ -1,6 +1,6 @@
 <h1 class="title"*ngIf="!modoEditar">Cadastro Cliente</h1>
 <h1 class="title" *ngIf="modoEditar">Editar Cliente</h1>
-<form [formGroup]="cliente">
+<form [formGroup]="cliente" class="cliente">
     <div mat-dialog-content class="cadastro">
         <mat-form-field class="cpf">
             <mat-label>CPF</mat-label>
@@ -49,7 +49,7 @@
 </form>
 
 <div mat-dialog-actions class="actions-button">
-    <button class="cancelar-button" mat-button (click)="cancelar()">
+    <button class="cancelar-button" mat-button mat-dialog-close>
         Cancelar
     </button>
     <button class="cadastrar-button" [disabled]="!cliente.valid" mat-raised-button (click)="cadastrar()" *ngIf="!modoEditar">

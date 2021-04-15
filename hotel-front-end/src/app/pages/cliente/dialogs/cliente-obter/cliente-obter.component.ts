@@ -22,9 +22,4 @@ export class ClienteObterComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
-  cancelar() {
-    this.dialogRef.close();
-  }
-
 }

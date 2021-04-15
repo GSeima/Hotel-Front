@@ -1,7 +1,7 @@
 <h1 class="title">Reserva</h1>
 <div mat-dialog-content class="obter">
     <mat-list>
-        <div fxLayout="column">
+        <div fxLayout="row" fxLayout.lt-md="column">
             <mat-list-item>
                 <mat-icon matListIcon>receipt_long</mat-icon>
                 <h3 matLine>Reserva</h3>
@@ -17,16 +17,13 @@
                 <h3 matLine>Nome</h3>
                 <p matLine>{{reserva.nomeCompleto}}</p>
             </mat-list-item>
-            <mat-list-item *ngIf="reserva.checkIn != null">
-                <mat-icon matListIcon>group</mat-icon>
-                <h3 matLine>Hospedes</h3>
-                <p matLine *ngFor="let hospede of reserva.hospedes">{{hospede.cpf | mask: '000.000.000-00'}}</p>
-            </mat-list-item>
             <mat-list-item>
                 <mat-icon matListIcon>king_bed</mat-icon>
                 <h3 matLine>Quarto</h3>
                 <p matLine>{{reserva.quartoId}}</p>
             </mat-list-item>
+        </div>
+        <div fxLayout="row" fxLayout.lt-md="column">
             <mat-list-item>
                 <mat-icon matListIcon>calendar_today</mat-icon>
                 <h3 matLine>Data de Criação</h3>
@@ -41,6 +38,13 @@
                 <mat-icon matListIcon>door_back</mat-icon>
                 <h3 matLine>Data de Saída</h3>
                 <p matLine>{{reserva.dataSaida | date:'dd/MM/yyyy'}}</p>
+            </mat-list-item>
+        </div>
+        <div  fxLayout="row" fxLayout.lt-md="column">
+            <mat-list-item *ngIf="reserva.checkIn != null">
+                <mat-icon matListIcon>group</mat-icon>
+                <h3 matLine>Hospedes</h3>
+                <p matLine *ngFor="let hospede of reserva.hospedes">{{hospede.cpf | mask: '000.000.000-00'}}</p>
             </mat-list-item>
             <mat-list-item *ngIf="reserva.checkIn != null">
                 <mat-icon matListIcon>location_on</mat-icon>
@@ -62,7 +66,7 @@
 </div>
 
 <div mat-dialog-actions class="actions-button">
-    <button class="cancelar-button" mat-button (click)="cancelar()">
+    <button class="cancelar-button" mat-button mat-dialog-close>
         Sair
     </button>
 </div>

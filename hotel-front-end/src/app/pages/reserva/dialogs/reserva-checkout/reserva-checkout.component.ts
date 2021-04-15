@@ -45,9 +45,4 @@ export class ReservaCheckoutComponent implements OnInit {
         this.dialogRef.close();
       });
   }
-
-  cancelar() {
-    this.dialogRef.close();
-  }
-
 }

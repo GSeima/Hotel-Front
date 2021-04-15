@@ -22,9 +22,4 @@ export class ObterReservaComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
-  cancelar() {
-    this.dialogRef.close();
-  }
-
 }

@@ -12,7 +12,7 @@
 </form>
 
 <div mat-dialog-actions class="actions-button">
-    <button class="cancelar-button" mat-button (click)="cancelar()">
+    <button class="cancelar-button" mat-button mat-dialog-close>
         Cancelar
     </button>
     <button class="checkOut-button" [disabled]="!taxasReserva.valid" mat-raised-button (click)="checkOut()">

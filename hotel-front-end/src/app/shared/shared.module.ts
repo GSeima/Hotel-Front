@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { NgModule, Pipe } from "@angular/core";
+import { NgModule } from "@angular/core";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatButtonModule } from "@angular/material/button";
@@ -30,7 +30,7 @@ export const options: Partial<IConfig> | (() => Partial<IConfig>) = null;
   declarations: [
     SidebarComponent,
     LayoutComponent,
-    HumanizeFormMessagesPipe
+    HumanizeFormMessagesPipe,
   ],
   imports: [
     CommonModule,

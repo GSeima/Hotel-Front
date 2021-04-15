@@ -26,10 +26,15 @@ export class ReservaPageComponent implements OnInit, AfterViewInit {
 
   displayedColumns = ['menu', 'reservaId', 'quartoId', 'cpf', 'checkIn', 'checkOut']
 
+  entradaMin = new Date();
+
   constructor(
     private reservaService: ReservaService, 
     private dialog: MatDialog
-    ) { }
+    ) 
+    {
+      this.entradaMin.setDate(this.entradaMin.getDate());
+    }
 
   @ViewChild(MatPaginator) paginator:MatPaginator
 

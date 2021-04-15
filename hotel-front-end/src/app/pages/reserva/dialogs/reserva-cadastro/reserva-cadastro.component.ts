@@ -61,9 +61,4 @@ export class ReservaCadastroComponent implements OnInit {
         this.dialogRef.close();
       });
   }
-
-  cancelar() {
-    this.dialogRef.close();
-  }
-
 }

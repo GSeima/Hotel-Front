@@ -1,41 +1,52 @@
-<h1 class="title">Cliente</h1>
-<div mat-dialog-content class="obter">
-    <mat-list>
-        <mat-list-item>
-            <mat-icon matListIcon>badge</mat-icon>
-            <h3 matLine>CPF</h3>
-            <p matLine>{{cliente.cpf | mask: '000.000.000-00'}}</p>
-        </mat-list-item>
-        <mat-list-item>
-            <mat-icon matListIcon>person</mat-icon>
-            <h3 matLine>Nome</h3>
-            <p matLine>{{cliente.nomeCompleto}}</p>
-        </mat-list-item>
-        <mat-list-item>
-            <mat-icon matListIcon>calendar_today</mat-icon>
-            <h3 matLine>Data de Nascimento</h3>
-            <p matLine>{{cliente.dataNascimento | date:'dd/MM/yyyy'}}</p>
-        </mat-list-item>
-        <mat-list-item>
-            <mat-icon matListIcon>email</mat-icon>
-            <h3 matLine>Email</h3>
-            <p matLine>{{cliente.email}}</p>
-        </mat-list-item>
-        <mat-list-item>
-            <mat-icon matListIcon>phone</mat-icon>
-            <h3 matLine>Telefone</h3>
-            <p matLine>{{cliente.telefone | mask: '(00)00000-0000'}}</p>
-        </mat-list-item>
-        <mat-list-item>
-            <mat-icon matListIcon>calendar_today</mat-icon>
-            <h3 matLine>Data de Criação</h3>
-            <p matLine>{{cliente.dataCriacaoCliente | date:'dd/MM/yyyy MM:mm:ss'}}</p>
-        </mat-list-item>
-    </mat-list>
-</div>
+<div fxLayout="column">
+    <h1 class="title">Cliente</h1>
+    <div mat-dialog-content class="obter">
+        <mat-list>
+            <div fxLayout="row" fxLayout.lt-sm="column">
+                <mat-list-item>
+                    <mat-icon matListIcon>badge</mat-icon>
+                    <h3 matLine>CPF</h3>
+                    <p matLine>{{cliente.cpf | mask: '000.000.000-00'}}</p>
+                </mat-list-item>
+                <mat-list-item>
+                    <mat-icon matListIcon>person</mat-icon>
+                    <h3 matLine>Nome</h3>
+                    <p matLine>{{cliente.nomeCompleto}}</p>
+                </mat-list-item>
+                <mat-list-item>
+                    <mat-icon matListIcon>calendar_today</mat-icon>
+                    <h3 matLine>Data de Nascimento</h3>
+                    <p matLine>{{cliente.dataNascimento | date:'dd/MM/yyyy'}}</p>
+                </mat-list-item>
+            </div>
 
-<div mat-dialog-actions class="actions-button">
-    <button class="cancelar-button" mat-button (click)="cancelar()">
-        Sair
-    </button>
+            <div fxLayout="row" fxLayout.lt-sm="column">
+                <mat-list-item>
+                    <mat-icon matListIcon>email</mat-icon>
+                    <h3 matLine>Email</h3>
+                    <p matLine>{{cliente.email}}</p>
+                </mat-list-item>
+                <mat-list-item>
+                    <mat-icon matListIcon>phone</mat-icon>
+                    <h3 matLine>Telefone</h3>
+                    <p matLine>{{cliente.telefone | mask: '(00)00000-0000'}}</p>
+                </mat-list-item>
+            </div>
+
+            <div fxLayout="row" fxLayout.lt-sm="column">
+                <mat-list-item>
+                    <mat-icon matListIcon>calendar_today</mat-icon>
+                    <h3 matLine>Data de Criação</h3>
+                    <p matLine>{{cliente.dataCriacaoCliente | date:'dd/MM/yyyy MM:mm:ss'}}</p>
+                </mat-list-item>
+            </div>
+        </mat-list>
+    </div>
+
+    <div mat-dialog-actions class="actions-button" fxLayoutAlign="start center" >
+        <button class="cancelar-button" mat-button mat-dialog-close>
+            Sair
+        </button>
+    </div>
+
 </div>

@@ -34,7 +34,7 @@ export class ReservaCheckinComponent implements OnInit {
 
   ngOnInit(): void {
     this.hospedes = this.formBuilder.group({
-      cpfs: this.formBuilder.array([ this.criarCampo()])
+      cpfs: this.formBuilder.array([])
     });
   }
 
@@ -48,10 +48,6 @@ export class ReservaCheckinComponent implements OnInit {
       .subscribe(() => {
         this.dialogRef.close();
       });
-  }
-
-  cancelar() {
-    this.dialogRef.close();
   }
 
   criarCampo(): FormGroup {

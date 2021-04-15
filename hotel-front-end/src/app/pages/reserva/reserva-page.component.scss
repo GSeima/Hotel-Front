@@ -2,25 +2,14 @@ table {
     width: 100%;
 }
 
-.section {
-    text-align: left;
-    padding-left: 30px;
+.filter-button {
+    margin-left: 40px;
 }
 
 .button {
-    padding-top: 5px;
-    padding-bottom: 5px;
-    padding-right: 10px;
-    text-align: right;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    margin-right: 10px;
-}
-
-.filter-button {
-    margin-left: 40px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    margin-right: 20px;
 }
 
 .button-fab {

@@ -112,8 +112,4 @@ export class ClienteCadastroComponent implements OnInit {
         this.dialogRef.close();
       })
   }
-
-  cancelar() {
-    this.dialogRef.close();
-  }
 }
