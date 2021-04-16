@@ -29,12 +29,19 @@
               <mat-icon>visibility</mat-icon>
               <span>Visualizar</span>
             </button>
-            <button mat-menu-item (click)="checkIn(row.reservaId, row.capacidade)" [disabled]="row.checkIn != null">
+
+            <button mat-menu-item (click)="cancelarReserva(row.reservaId)" [disabled]="row.checkIn != null || row.statusDescricao != 'Em andamento'">
+              <mat-icon>cancel</mat-icon>
+              <span>Cancelar</span>
+            </button>
+
+            <button mat-menu-item (click)="checkIn(row.reservaId, row.capacidade)" [disabled]="row.checkIn != null || row.statusDescricao != 'Em andamento'">
               <mat-icon>location_on</mat-icon>
               <span>Check-In</span>
             </button>
+
             <button mat-menu-item (click)="checkOut(row.reservaId)"
-              [disabled]="row.checkOut != null || row.checkIn == null">
+              [disabled]="row.checkOut != null || row.checkIn == null || row.statusDescricao != 'Em andamento'">
               <mat-icon>done</mat-icon>
               <span>Check-Out</span>
             </button>
@@ -69,6 +76,11 @@
       <ng-container matColumnDef="checkOut">
         <th mat-header-cell fxHide.lt-sm *matHeaderCellDef> Check-Out </th>
         <td mat-cell fxHide.lt-sm *matCellDef="let row"> {{row.checkOut | date:'dd/MM/yyyy HH:mm:ss' }} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="statusDescricao">
+        <th mat-header-cell fxHide.lt-sm *matHeaderCellDef> Status </th>
+        <td mat-cell fxHide.lt-sm *matCellDef="let row"> {{row.statusDescricao}} </td>
       </ng-container>
 
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

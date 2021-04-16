@@ -5,6 +5,7 @@ import { MatTableDataSource } from '@angular/material/table';
 
 import { ObterReservaComponent } from './dialogs/obter-reserva/obter-reserva.component';
 import { ReservaCadastroComponent } from './dialogs/reserva-cadastro/reserva-cadastro.component';
+import { ReservaCancelarComponent } from './dialogs/reserva-cancelar/reserva-cancelar.component';
 import { ReservaCheckinComponent } from './dialogs/reserva-checkin/reserva-checkin.component';
 import { ReservaCheckoutComponent } from './dialogs/reserva-checkout/reserva-checkout.component';
 import { CheckInModel } from './models/checkIn.model';
@@ -24,7 +25,7 @@ export class ReservaPageComponent implements OnInit, AfterViewInit {
 
   reservas: Reserva[]
 
-  displayedColumns = ['menu', 'reservaId', 'quartoId', 'cpf', 'checkIn', 'checkOut']
+  displayedColumns = ['menu', 'reservaId', 'quartoId', 'cpf', 'checkIn', 'checkOut', 'statusDescricao']
 
   entradaMin = new Date();
 
@@ -71,6 +72,15 @@ export class ReservaPageComponent implements OnInit, AfterViewInit {
 
   cadastroReserva(){
     let dialogRef = this.dialog.open(ReservaCadastroComponent);
+    dialogRef.afterClosed().subscribe(() => {
+      this.buscarReservas();
+    });
+  }
+
+  cancelarReserva(reservaId: number){
+    let dialogRef = this.dialog.open(ReservaCancelarComponent, {
+      data: reservaId
+    });
     dialogRef.afterClosed().subscribe(() => {
       this.buscarReservas();
     });

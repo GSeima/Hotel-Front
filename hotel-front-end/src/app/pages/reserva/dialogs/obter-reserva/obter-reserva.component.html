@@ -40,6 +40,11 @@
                 <h3 matLine>Data de Saída</h3>
                 <p matLine>{{reserva.dataSaida | date:'dd/MM/yyyy'}}</p>
             </mat-list-item>
+            <mat-list-item>
+                <mat-icon matListIcon>priority_high</mat-icon>
+                <h3 matLine>Status</h3>
+                <p matLine>{{reserva.statusDescricao}}</p>
+            </mat-list-item>
         </div>
         <hr>
         <div  fxLayout="row" fxLayout.lt-md="column">

@@ -59,6 +59,20 @@ export class ReservaService {
             );
     }
 
+    cancelar(reservaId: number) {
+        return this.http
+            .post(`${apiUrl}/reserva/${reservaId}/cancelar`, reservaId)
+            .pipe(
+                take(1),
+                catchError((error: HttpErrorResponse) => {
+                    this.snackBar.erroSnackBar(
+                        error
+                    );
+                    throw error;
+                })
+            );
+    }
+
     checkIn(reservaId: number, hospedesCpf: HospedesCpfModel[]) {
         return this.http
             .post(`${apiUrl}/reserva/${reservaId}/checkIn`, hospedesCpf)

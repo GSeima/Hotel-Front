@@ -8,6 +8,7 @@ import { ReservaCheckinComponent } from './dialogs/reserva-checkin/reserva-check
 import { ReservaCheckoutComponent } from './dialogs/reserva-checkout/reserva-checkout.component';
 import { ObterReservaComponent } from './dialogs/obter-reserva/obter-reserva.component';
 import { ReservaPageComponent } from "./reserva-page.component";
+import { ReservaCancelarComponent } from './dialogs/reserva-cancelar/reserva-cancelar.component';
 
 const routes: Routes = [
     {
@@ -23,7 +24,8 @@ const routes: Routes = [
         ReservaCadastroComponent,
         ReservaCheckinComponent,
         ReservaCheckoutComponent,
-        ObterReservaComponent
+        ObterReservaComponent,
+        ReservaCancelarComponent
     ],
     imports: [
         SharedModule,

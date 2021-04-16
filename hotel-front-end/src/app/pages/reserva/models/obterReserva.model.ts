@@ -10,4 +10,5 @@ export interface ObterReservaModel {
     checkIn: Date
     checkOut: Date
     valorTotal: number
+    statusDescricao: string
 }
